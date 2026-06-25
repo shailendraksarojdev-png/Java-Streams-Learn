@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.DoubleSummaryStatistics;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -120,5 +121,31 @@ public class StreamBasicsExercises1 {
         if (products == null) return List.of();
         return products.stream().flatMap(p -> p.getTags() == null ? java.util.stream.Stream.empty() : p.getTags().stream()).distinct().collect(Collectors.toList());
     }
+    
+    // 21. Non-stream: map product list to product names using classic loops
+    public static List<String> productNamesNoStream(List<Product> products) {
+        if (products == null) return List.of();
+        List<String> names = new ArrayList<>();
+        for (Product p : products) {
+            if (p != null) {
+                names.add(p.getName());
+            }
+        }
+        return names;
+    }
+
+    // 22. Non-stream: filter products by category using classic loops
+    public static List<Product> productsInCategoryNoStream(List<Product> products, String category) {
+        if (products == null) return List.of();
+        List<Product> result = new ArrayList<>();
+        for (Product p : products) {
+            if (p == null) continue;
+            if (category == null || category.equals(p.getCategory())) {
+                result.add(p);
+            }
+        }
+        return result;
+    }
+
 }
 
