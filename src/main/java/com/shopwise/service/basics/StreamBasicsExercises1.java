@@ -134,18 +134,6 @@ public class StreamBasicsExercises1 {
         return names;
     }
 
-    // 22. Non-stream: filter products by category using classic loops
-    public static List<Product> productsInCategoryNoStream(List<Product> products, String category) {
-        if (products == null) return List.of();
-        List<Product> result = new ArrayList<>();
-        for (Product p : products) {
-            if (p == null) continue;
-            if (category == null || category.equals(p.getCategory())) {
-                result.add(p);
-            }
-        }
-        return result;
-    }
 
 }
 
