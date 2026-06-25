@@ -101,5 +101,21 @@ public class IntermediateOperations {
         return result;
     }
 
+    /**
+     * Non-stream implementation: get all distinct tags across products using classic loops.
+     */
+    public List<String> flatMapProductTagsNoStream(List<Product> products) {
+        if (products == null) return Collections.emptyList();
+        List<String> allTags = new ArrayList<>();
+        for (Product p : products) {
+            if (p != null && p.getTags() != null) {
+                for (String tag : p.getTags()) {
+                    if (!allTags.contains(tag)) {
+                        allTags.add(tag);
+                    }
+                }
+            }
+        }
+        return allTags;
+    }
 }
-
