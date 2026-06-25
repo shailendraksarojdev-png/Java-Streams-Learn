@@ -121,7 +121,7 @@ public class StreamBasicsExercises1 {
         if (products == null) return List.of();
         return products.stream().flatMap(p -> p.getTags() == null ? java.util.stream.Stream.empty() : p.getTags().stream()).distinct().collect(Collectors.toList());
     }
-    
+
     // 21. Non-stream: map product list to product names using classic loops
     public static List<String> productNamesNoStream(List<Product> products) {
         if (products == null) return List.of();
@@ -134,6 +134,37 @@ public class StreamBasicsExercises1 {
         return names;
     }
 
+    // 22. Non-stream: filter products by top rating using classic loops
+    public static List<Product> topRatedProductsNoStream(List<Product> products, double minRating) {
+        if (products == null) return List.of();
+        List<Product> result = new ArrayList<>();
+        for (Product p : products) {
+            if (p != null && p.getRating() >= minRating) {
+                result.add(p);
+            }
+        }
+        return result;
+    }
+
+    // 23. Non-stream: filter products that contain a specific tag using classic loops
+    public static List<Product> productsWithTagNoStream(List<Product> products, String tag) {
+        if (products == null || tag == null) return List.of();
+        List<Product> result = new ArrayList<>();
+        for (Product p : products) {
+            if (p != null && p.getTags() != null && p.getTags().contains(tag)) {
+                result.add(p);
+            }
+        }
+        return result;
+    }
+
+    // 24. Non-stream: sort products by price using classic loops
+    public static List<Product> sortByPriceNoStream(List<Product> products, boolean ascending) {
+        if (products == null) return List.of();
+        List<Product> result = new ArrayList<>(products);
+        result.sort((a, b) -> ascending ? Double.compare(a.getPrice(), b.getPrice()) : Double.compare(b.getPrice(), a.getPrice()));
+        return result;
+    }
+
 
 }
-
