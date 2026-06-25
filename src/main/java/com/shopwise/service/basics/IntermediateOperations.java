@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.ArrayList;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -70,5 +71,35 @@ public class IntermediateOperations {
                 .peek(action)
                 .collect(Collectors.toList());
     }
+    
+    /**
+     * Non-stream implementation: map products to their names using classic loops.
+     */
+    public List<String> mapProductNamesNoStream(List<Product> products) {
+        if (products == null) return Collections.emptyList();
+        List<String> names = new ArrayList<>();
+        for (Product p : products) {
+            if (p != null) {
+                names.add(p.getName());
+            }
+        }
+        return names;
+    }
+
+    /**
+     * Non-stream implementation: filter products by category using classic loops.
+     */
+    public List<Product> filterByCategoryNoStream(List<Product> products, String category) {
+        if (products == null) return Collections.emptyList();
+        List<Product> result = new ArrayList<>();
+        for (Product p : products) {
+            if (p == null) continue;
+            if (category == null || category.equals(p.getCategory())) {
+                result.add(p);
+            }
+        }
+        return result;
+    }
+
 }
 
